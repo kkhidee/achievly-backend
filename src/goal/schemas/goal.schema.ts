@@ -57,9 +57,9 @@ export const GetGoalsSchema = z.object({
   status: z.enum([GoalStatusEnum.Ongoing, GoalStatusEnum.Achieved]).optional(),
 });
 
-export const GetStatisticsSchema = z.object({
-  period: z.array(z.string(ZOD_ERROR), ZOD_ERROR).nonempty(),
-});
+export const GetStatisticsSchema = z
+  .array(z.string(ZOD_ERROR), ZOD_ERROR)
+  .nonempty();
 
 export const GetPublicGoalsSchema = z.object({
   search: z.string(ZOD_ERROR).optional(),

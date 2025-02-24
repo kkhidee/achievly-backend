@@ -81,11 +81,11 @@ export class GoalController {
   async getStatistics(@Req() request: { user: TGuardUser } & Request) {
     const { user, query } = request;
 
-    const { data, error } = GetStatisticsSchema.safeParse(query);
+    const { data, error } = GetStatisticsSchema.safeParse(query['period[]']);
 
     if (error) throw new BadRequestException(WRONG_PARAMS);
 
-    return await this.goalService.getStatistics(user, data.period);
+    return await this.goalService.getStatistics(user, data);
   }
 
   @Get('/public')
