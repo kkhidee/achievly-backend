@@ -1,7 +1,7 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { AuthGuard } from '@/auth/guards/auth.guard';
+import { JwtAuthGuard } from '@/auth/guards/auth.guard';
 import { TGuardUser } from '@/auth/types/auth.type';
 import {
   BadRequestResponse,
@@ -13,7 +13,7 @@ import { UserService } from './user.service';
 
 @ApiTags('Users')
 @Controller('users')
-@UseGuards(AuthGuard)
+@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private userService: UserService) {}
 

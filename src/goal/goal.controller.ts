@@ -18,7 +18,7 @@ import {
 } from '@nestjs/swagger';
 import { Request } from 'express';
 
-import { AuthGuard } from '@/auth/guards/auth.guard';
+import { JwtAuthGuard } from '@/auth/guards/auth.guard';
 import { TGuardUser } from '@/auth/types/auth.type';
 import {
   GOAL_ID_MISSING,
@@ -44,7 +44,7 @@ import { TCreateGoal } from '@/goal/types/goal.types';
 
 @ApiTags('Goals')
 @Controller('goals')
-@UseGuards(AuthGuard)
+@UseGuards(JwtAuthGuard)
 export class GoalController {
   constructor(private readonly goalService: GoalService) {}
 

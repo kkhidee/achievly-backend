@@ -4,8 +4,8 @@ import * as fs from 'fs';
 
 export const setupSwagger = (app: INestApplication) => {
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Goal planner API')
-    .setDescription('Swagger API documentation for goal planner app')
+    .setTitle('Achievly API')
+    .setDescription('Swagger API documentation for Achievly app')
     .setVersion('3.1.0')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);

@@ -14,6 +14,9 @@ class BadRequest {
 export const BadRequestResponse = (): MethodDecorator & ClassDecorator =>
   ApiResponse({ type: BadRequest, status: 400 });
 
+export const UnauthorizedResponse = (): MethodDecorator & ClassDecorator =>
+  ApiResponse({ type: BadRequest, status: 401 });
+
 export const SuccessResponse = (options?: {
   type?: ApiResponseMetadata['type'];
   isArray?: boolean;
