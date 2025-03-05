@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 
 import { GoalEntity } from '@/goal/entity/goal.entity';
+import { EventEntity } from '@/event/entity/event.entity';
 
 @Entity()
 export class UserEntity {
@@ -41,6 +42,9 @@ export class UserEntity {
 
   @OneToMany(() => GoalEntity, goal => goal.user)
   goals: GoalEntity[];
+
+  @OneToMany(() => EventEntity, event => event.user)
+  events: EventEntity[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
