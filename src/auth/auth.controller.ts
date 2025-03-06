@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiExcludeEndpoint, ApiOperation } from '@nestjs/swagger';
@@ -25,6 +25,27 @@ export class AuthController {
   @ApiOperation({ operationId: 'checkAuth', summary: 'Check auth' })
   @UseGuards(JwtAuthGuard)
   async check() {}
+
+  @Post('/logout')
+  @SuccessResponse()
+  @UnauthorizedResponse()
+  @ApiOperation({ operationId: 'logout', summary: 'Logout' })
+  async logout(
+    @Req() req: { user: ISocialProfile },
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    response.cookie('accessToken', '', {
+      expires: new Date(0),
+      httpOnly: true,
+    });
+
+    response.cookie('refreshToken', '', {
+      expires: new Date(0),
+      httpOnly: true,
+    });
+
+    return;
+  }
 
   @ApiExcludeEndpoint()
   @Get('/google')

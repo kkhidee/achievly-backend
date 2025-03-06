@@ -27,6 +27,14 @@ export interface IGoal {
   updatedAt: Date;
 }
 
+export interface IEvent {
+  id: number;
+  title: string;
+  start: number;
+  end: number;
+  user: UserEntity;
+}
+
 export interface IGoalHistory {
   date: number;
   goal: HistoryGoalDto;

@@ -9,6 +9,7 @@ import {
 import { GoalEntity } from '@/goal/entity/goal.entity';
 
 import { UserEntity } from './entity/user.entity';
+import { EventEntity } from '@/event/entity/event.entity';
 
 @Injectable()
 export class UserService {
@@ -66,5 +67,16 @@ export class UserService {
     });
 
     return result?.goals || [];
+  }
+
+  async getEvents(options: { userId: number }): Promise<EventEntity[]> {
+    const result = await this.userRepository.findOne({
+      where: { id: options.userId },
+      relations: {
+        events: true,
+      },
+    });
+
+    return result?.events || [];
   }
 }

@@ -65,3 +65,9 @@ export const GetPublicGoalsSchema = z.object({
   search: z.string(ZOD_ERROR).optional(),
   category: z.string(ZOD_ERROR).optional(),
 });
+
+export const EventSchema = z.object({
+  title: z.string(ZOD_ERROR),
+  start: z.number(ZOD_ERROR),
+  end: z.number(ZOD_ERROR),
+});
