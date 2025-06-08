@@ -38,11 +38,9 @@ export class GoalService {
   ) {}
 
   async getAllGoals() {
-    const goals = await this.goalRepository.find({
+    return await this.goalRepository.find({
       relations: ['user', 'tasks', 'habits'],
     });
-
-    return goals.map(goal => new GoalDto(goal));
   }
 
   async getGoals({ id }: TGuardUser, params?: TGetGoalsParams) {

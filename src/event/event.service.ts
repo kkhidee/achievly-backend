@@ -14,6 +14,10 @@ export class EventService {
     private readonly userService: UserService,
   ) {}
 
+  async getAllEvents() {
+    return await this.eventRepository.find({ relations: ['user'] });
+  }
+
   async getEvents(user: TGuardUser, period: string[]) {
     const events = await this.userService.getEvents({ userId: user.id });
 

@@ -41,6 +41,7 @@ import {
   GoalSchema,
 } from '@/goal/schemas/goal.schema';
 import { TCreateGoal } from '@/goal/types/goal.types';
+import { GoalEntity } from '@/goal/entity/goal.entity';
 
 @ApiTags('Goals')
 @Controller('goals')
@@ -49,7 +50,7 @@ export class GoalController {
   constructor(private readonly goalService: GoalService) {}
 
   @Get('/all')
-  @SuccessResponse({ type: GoalDto, isArray: true })
+  @SuccessResponse({ type: GoalEntity, isArray: true })
   @BadRequestResponse()
   @ApiOperation({ operationId: 'getAllGoals', summary: 'Get all goals' })
   @ApiQuery({ type: String, name: 'status' })

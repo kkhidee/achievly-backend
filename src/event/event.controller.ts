@@ -38,6 +38,15 @@ import { z } from 'zod';
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
+  @Get('/all')
+  @SuccessResponse({ type: EventDto, isArray: true })
+  @BadRequestResponse()
+  @ApiOperation({ operationId: 'getAllEvents', summary: 'Get all events' })
+  @ApiQuery({ type: String, isArray: true, name: 'period' })
+  async getAllEvents() {
+    return await this.eventService.getAllEvents();
+  }
+
   @Get('/')
   @SuccessResponse({ type: EventDto, isArray: true })
   @BadRequestResponse()
