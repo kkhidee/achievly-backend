@@ -48,6 +48,15 @@ import { TCreateGoal } from '@/goal/types/goal.types';
 export class GoalController {
   constructor(private readonly goalService: GoalService) {}
 
+  @Get('/all')
+  @SuccessResponse({ type: GoalDto, isArray: true })
+  @BadRequestResponse()
+  @ApiOperation({ operationId: 'getAllGoals', summary: 'Get all goals' })
+  @ApiQuery({ type: String, name: 'status' })
+  async getAllGoals() {
+    return await this.goalService.getAllGoals();
+  }
+
   @Get('/')
   @SuccessResponse({ type: GoalDto, isArray: true })
   @BadRequestResponse()
