@@ -17,6 +17,16 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @SuccessResponse({ type: UserDto, isArray: true })
+  @BadRequestResponse()
+  @ApiOperation({ operationId: 'getAllUsers', summary: 'Get profile' })
+  @Get('/all')
+  async getAllUsers() {
+    return await this.userService.find({
+      relations: ['goals', 'events'],
+    });
+  }
+
   @SuccessResponse({ type: UserDto })
   @BadRequestResponse()
   @ApiOperation({ operationId: 'getProfile', summary: 'Get profile' })
